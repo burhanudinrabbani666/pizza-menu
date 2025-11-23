@@ -67,6 +67,8 @@ function Header() {
 }
 
 function Pizza(pizza) {
+  if (pizza.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={pizza.pizzaObj.photoName} alt={pizza.pizzaObj.name} />
