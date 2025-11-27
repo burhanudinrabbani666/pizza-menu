@@ -67,7 +67,6 @@ function Header() {
 }
 
 function Pizza({ pizzaObj }) {
-  console.log(pizzaObj);
   if (pizzaObj.soldOut) return null;
 
   return (
@@ -84,6 +83,7 @@ function Pizza({ pizzaObj }) {
 
 function Menu() {
   const pizzas = pizzaData;
+  // const pizzas = [];
   const numPizzas = pizzas.length;
 
   return (
@@ -91,11 +91,20 @@ function Menu() {
       <h2> Our Menu:</h2>
 
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        // fragment
+        <React.Fragment>
+          <p>
+            {" "}
+            Authencity Italian Cuisine. 6 Creative dishes to choose from. All
+            from our stone over, all organic. all delicius.
+          </p>
+
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </React.Fragment>
       ) : (
         <p> We're stil working on our menu. Please come back later :)</p>
       )}
