@@ -61,21 +61,22 @@ function Header() {
   const style = {};
   return (
     <header className="header">
-      <h1 style={style}>Fast Raect Pizza Co.</h1>;
+      <h1 style={style}>Fast React Pizza Co.</h1>;
     </header>
   );
 }
 
-function Pizza(pizza) {
-  if (pizza.pizzaObj.soldOut) return null;
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
+  if (pizzaObj.soldOut) return null;
 
   return (
     <li className="pizza">
-      <img src={pizza.pizzaObj.photoName} alt={pizza.pizzaObj.name} />
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{pizza.pizzaObj.name}</h3>
-        <p>{pizza.pizzaObj.ingredients}</p>
-        <span>{pizza.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -96,7 +97,7 @@ function Menu() {
           ))}
         </ul>
       ) : (
-        <p> We're stil workinging on our menu. Please come back later :)</p>
+        <p> We're stil working on our menu. Please come back later :)</p>
       )}
     </main>
   );
@@ -111,7 +112,7 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closedHour={closedHour} />
+        <Order closedHour={closedHour} openHour={openHour} />
       ) : (
         <p>
           We're happy to welcome you between {openHour}:00 and {closedHour}:00.
@@ -121,11 +122,12 @@ function Footer() {
   );
 }
 
-function Order(props) {
+function Order({ closedHour, openHour }) {
   return (
     <div className="order">
       <p>
-        We're open until {props.closedHour}:00. Come visit us or order online.
+        We're open from {openHour}:00 to {closedHour}:00. Come visit us or order
+        online.
       </p>
       <button className="btn">Order</button>
     </div>
